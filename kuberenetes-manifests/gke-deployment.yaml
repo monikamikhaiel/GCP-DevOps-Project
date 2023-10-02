@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gcpdevops
+  name: gcpdevops
+  namespace: gcp-devops-project-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcpdevops
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gcpdevops
+    spec:
+      containers:
+      - image: gcr.io/$PROJECT_ID/gcpdevops
+        name: gcpdevops
+        resources: {}
+status: {}
