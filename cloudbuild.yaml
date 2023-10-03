@@ -9,12 +9,11 @@ steps:
   #step 4
 - name: 'gcr.io/cloud-builders/kubectl'
   entrypoint: 'bash'
-  args: [
-   '-c', 
-   'kubectl create ns gcp-devops-project-$BRANCH_NAME || exit 0']
+  args: ['-c','kubectl create namespace gcp-devops-project-$BRANCH_NAME']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-project'
+  - 'CLOUDSDK_CORE_PROJECT=gcp-project-400416'
 # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
