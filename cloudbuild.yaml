@@ -8,8 +8,7 @@ steps:
   # create the namespace 
   #step 4
 - name: 'gcr.io/cloud-builders/kubectl'
-  entrypoint: 'bash'
-  args: ['-c','kubectl create namespace gcp-devops-project-$BRANCH_NAME']
+  args: ['create', 'namespace','gcp-devops-project-$BRANCH_NAME']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-project'
