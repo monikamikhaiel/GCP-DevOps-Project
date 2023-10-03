@@ -19,7 +19,7 @@ spec:
         app: gcpdevops
     spec:
       containers:
-      - image: "gcr.io/gcp-project/gcpdevops:latest"
+      - image: "gcr.io/gcp-project-400416/gcpdevops:latest"
         name: gcpdevops
         resources: {}
 status: {}
