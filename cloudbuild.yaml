@@ -8,7 +8,8 @@ steps:
   # create the namespace 
   #step 4
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['create', 'namespace','gcp-devops-project-$BRANCH_NAME']
+  entrypoint: bash 
+  args: ['-c','gcloud container clusters get-credentials --project=$CLOUDSDK_CORE_PROJECT --zone=$CLOUDSDK_COMPUTE_ZONE $CLOUDSDK_CONTAINER_CLUSTER && kubectl create namespace gcp-devops-project-$BRANCH_NAME || exit 0']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-project'
@@ -22,4 +23,4 @@ steps:
   - --location=us-central1-c	
   - --cluster=gcp-project	
   - --namespace=gcp-devops-project-$BRANCH_NAME
-  - --deploy-parameters="$BRANCH_NAME=$BRANCH_NAME"
+  #- --deploy-parameters="$BRANCH_NAME=$BRANCH_NAME"
