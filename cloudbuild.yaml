@@ -23,4 +23,6 @@ steps:
   - --location=us-central1-c	
   - --cluster=gcp-project	
   - --namespace=gcp-devops-project-$BRANCH_NAME
+options:
+  automapSubstitutions: true
   #- --deploy-parameters="$BRANCH_NAME=$BRANCH_NAME"
