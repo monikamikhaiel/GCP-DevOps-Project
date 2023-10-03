@@ -1,16 +1,23 @@
 steps:
 - name : "gcr.io/cloud-builders/docker"
-  args: ["build","-t","gcr.io/$PROJECT_ID/gcpdevops","."]
+  args: ["build","-t","gcr.io/$PROJECT_ID/gcpdevops:$BRANCH_NAME","."]
 # images:
-#    - "gcr.io/$PROJECT_ID/gcpdevops"
+#    - "gcr.io/$PROJECT_ID/gcpdevops:$BRANCH_NAME"
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/gcpdevops']
+  args: ['push', 'gcr.io/$PROJECT_ID/gcpdevops:$BRANCH_NAME']
+  # create the namespace 
+  #step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'create', 
+   'ns', 
+   'gcp-devops-project-$BRANCH_NAME'|| exit 0]
 # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=kuberenetes-manifests
-  - --image=gcr.io/$PROJECT_ID/gcpdevops
+  - --image=gcr.io/$PROJECT_ID/gcpdevops:$BRANCH_NAME
   - --location=us-central1-c	
   - --cluster=gcp-project	
-  - --namespace=gcp-devops-project-prod
+  - --namespace=gcp-devops-project-$BRANCH_NAME
