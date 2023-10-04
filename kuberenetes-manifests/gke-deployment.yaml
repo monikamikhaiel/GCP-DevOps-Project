@@ -19,7 +19,7 @@ spec:
         app: gcpdevops
     spec:
       containers:
-      - image: "gcr.io/gcp-project-400416/gcpdevops"  # from-param: "gcr.io/gcp-project-400416/gcpdevops${BRANCH_NAME}""
+      - image: "gcr.io/gcp-project-400416/gcpdevops:develop"  # from-param: "gcr.io/gcp-project-400416/gcpdevops${BRANCH_NAME}""
         name: gcpdevops
         resources: {}
 status: {}
