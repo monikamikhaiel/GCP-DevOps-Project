@@ -1,1 +1,5 @@
-infrastructure-terraform/*
+infrastructure-terraform/.terraform*
+infrastructure-terraform/*.json
+infrastructure-terraform/*.tfstate*
+infrastructure-terraform/*.exe
+infrastructure-terraform/*.tfvars
